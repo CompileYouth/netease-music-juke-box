@@ -1,0 +1,30 @@
+{
+  "name": "netease-music-juke-box",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CompileYouth/netease-music-juke-box.git"
+  },
+  "keywords": [
+    "Netease",
+    "Music"
+  ],
+  "author": "CompileYouth <CompileYouth@163.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CompileYouth/netease-music-juke-box/issues"
+  },
+  "homepage": "https://github.com/CompileYouth/netease-music-juke-box#readme",
+  "devDependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "jquery": "^3.0.0",
+    "path": "^0.12.7",
+    "webpack": "^1.13.1"
+  }
+}
