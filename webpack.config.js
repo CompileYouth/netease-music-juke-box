@@ -1,12 +1,13 @@
 const webpack = require("webpack");
 const path = require("path");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     context: path.resolve(__dirname, "./src"),
 
     entry: {
         vendor: [ "jquery" ],
-        nm: [ "./nm/index.js" ]
+        nm: [ "./nm/index.js", "./nm/resource/index.less" ]
     },
 
     output: {
@@ -23,6 +24,10 @@ module.exports = {
                 loaders: [
                     "babel-loader?sourceRoot=./src"
                 ]
+            },
+            {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
             }
         ]
     },
@@ -36,6 +41,7 @@ module.exports = {
             name: "vendor",
             filename: "vendor.js",
             minChunks: Infinity
-        })
+        }),
+        new ExtractTextPlugin("./[name]/resource/bundle.css")
     ]
 };
