@@ -1,5 +1,7 @@
 import NJUApplication from "../../nju/app/Application.js";
 
+import PlayListView from "../view/PlayListView";
+
 export default class Application extends NJUApplication
 {
     init()
@@ -7,6 +9,7 @@ export default class Application extends NJUApplication
         super.init();
         this.addStyleClass("nm-app");
         this._initLayout();
+        this._initPlayListView();
     }
 
     _initLayout() {
@@ -20,6 +23,11 @@ export default class Application extends NJUApplication
             </main>
             <footer></footer>
         `);
+    }
+
+    _initPlayListView() {
+        this.playListView = new PlayListView("nm-play-list");
+        this.addSubview(this.playListView, this.$("> main > aside"));
     }
 
     run()

@@ -35,7 +35,7 @@ export default class View extends ManagedObject {
         return this._subviews;
     }
 
-    addSubview(view) {
+    addSubview(view, $target = this.$container) {
         if (view instanceof View) {
             if (view.parent) {
                 view.removeFromParent();
@@ -43,14 +43,14 @@ export default class View extends ManagedObject {
 
             view._parent = this;
             this._subviews.push(view);
-            view.plaeAt(this.$container);
+            view.placeAt($target);
         }
     }
 
-    addSubviews(views) {
+    addSubviews(views, $target = this.$container) {
         if (Array.isArray(views)) {
             views.forEach((view) => {
-                this.addSubview(view);
+                this.addSubview(view, $target);
             });
         }
     }
