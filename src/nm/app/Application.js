@@ -11,10 +11,12 @@ export default class Application extends NJUApplication
 
     _initLayout() {
         this.$element.append(`
-            <header></header>
+            <header>
+                <h1>网易云音乐</h1>
+            </header>
             <main>
                 <aside></aside>
-                <section></section>
+                <section class="content"></section>
             </main>
             <footer></footer>
         `);

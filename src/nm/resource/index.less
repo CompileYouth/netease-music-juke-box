@@ -12,8 +12,15 @@ html, body {
 
 
     > header {
+        display: flex;
         height: @nm-app-header-height;
+        color: white;
+        align-items: center;
         background-color: @nm-primary-color;
+
+        > h1 {
+            margin-left: 20px;
+        }
     }
 
     > main {
@@ -23,10 +30,12 @@ html, body {
         > aside {
             width: 20%;
             border-right: 1px solid @nm-separator-color;
+            overflow-y: auto;
         }
 
-        > section {
+        > section.content {
             flex-grow: 1;
+            overflow-y: auto;
         }
     }
 
