@@ -8,4 +8,30 @@ html, body {
 
 .nm-app {
     display: flex;
+    flex-direction: column;
+
+
+    > header {
+        height: @nm-app-header-height;
+        background-color: @nm-primary-color;
+    }
+
+    > main {
+        display: flex;
+        flex-grow: 1;
+
+        > aside {
+            width: 20%;
+            border-right: 1px solid @nm-separator-color;
+        }
+
+        > section {
+            flex-grow: 1;
+        }
+    }
+
+    > footer {
+        height: @nm-app-footer-height;
+        border-top: 1px solid @nm-separator-color;
+    }
 }
