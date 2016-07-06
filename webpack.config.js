@@ -7,6 +7,7 @@ module.exports = {
 
     entry: {
         vendor: [ "jquery" ],
+        nju: [ "./nju/resource/index.less" ],
         nm: [ "./nm/index.js", "./nm/resource/index.less" ]
     },
 

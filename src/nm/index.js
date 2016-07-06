@@ -1,13 +1,14 @@
-import TrackListView from "./view/TrackListView";
+import Panel from "./panel/Panel";
+import PlayListView from "./view/PlayListView";
 
 $(document).ready(() => {
-    console.log("...");
-    const trackListView = new TrackListView();
-    $(document.body).append(trackListView.$element);
+    const panel = new Panel("nm-panel");
+    panel.title = "Panel-Title";
+    const playlistView = new PlayListView("nm-play-list-view");
 
-    $.ajax({
-        url: "http://music.163.com/api/playlist/detail?id=32994250"
-    }).then((res) => {
-        trackListView.tracks = res.result.tracks;
-    });
+    panel.addSubview(playlistView);
+    $(document.body).append(panel.$element);
+
+    console.log(playlistView.parent, panel.parent);
+    //playlistView.removeFromParent();
 });
