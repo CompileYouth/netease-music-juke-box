@@ -4,7 +4,7 @@ export default class ServiceClient {
     getUserPlayLists(uid = "40652589") {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: `${NM_API}/user/playlist/`
+                url: `${NM_API}/user/playlist/`,
                 data: {
                     uid,
                     limit: 1000,
@@ -24,7 +24,7 @@ export default class ServiceClient {
     getPlayListDetail(id = 4000000) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: `${NM_API}/playlist/detail/`
+                url: `${NM_API}/playlist/detail/`,
                 data: {
                     id
                 }
@@ -38,5 +38,12 @@ export default class ServiceClient {
             });
         });
     }
+}
 
+let __instance = null;
+ServiceClient.getInstance = function() {
+    if (__instance === null) {
+        __instance = new ServiceClient();
+    }
+    return __instance;
 }
