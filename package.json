@@ -28,7 +28,6 @@
     "jquery": "^3.0.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
-    "path": "^0.12.7",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1"
   }
