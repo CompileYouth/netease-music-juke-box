@@ -14,7 +14,7 @@ module.exports = {
 
     output: {
         path: path.resolve("./assets"),
-        publicPath: "assets",
+        publicPath: "/assets", // "/" cann't be removed
         filename: "[name]/bundle.js"
     },
 
