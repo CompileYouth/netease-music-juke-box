@@ -1,7 +1,7 @@
 {
   "name": "netease-music-juke-box",
   "version": "1.0.0",
-  "description": "",
+  "description": "Copy of Netease Music. 网易云音乐模仿。",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
