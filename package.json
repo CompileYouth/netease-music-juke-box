@@ -2,7 +2,7 @@
   "name": "netease-music-juke-box",
   "version": "1.0.0",
   "description": "Copy of Netease Music. 网易云音乐模仿。",
-  "main": "index.js",
+  "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,10 +25,15 @@
     "babel-preset-es2015": "^6.9.0",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "gulp": "^3.9.1",
+    "gulp-open": "^2.0.0",
+    "gulp-util": "^3.0.7",
     "jquery": "^3.0.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "rimraf": "^2.5.3",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
