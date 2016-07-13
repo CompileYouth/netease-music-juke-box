@@ -4,7 +4,7 @@ export default class TableView extends ListView {
     init() {
         super.init();
         this.removeStyleClass("nju-list-view");
-        this.addStyleClass("nju-table-view");
+        this.addStyleClass("nju-table-view striped");
 
         this._initLayout();
     }

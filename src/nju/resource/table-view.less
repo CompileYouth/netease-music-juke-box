@@ -1,8 +1,10 @@
 .nju-table-view {
     table-layout: fixed;
     border-collapse: collapse;
+}
 
-    &.striped {
-        
+.nju-table-view.striped {
+    tr:nth-child(2n) {
+        background-color: @nju-striped-color;
     }
 }
