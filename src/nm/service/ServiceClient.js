@@ -1,8 +1,19 @@
 const NM_API_URL = "/api";
 
 export default class ServiceClient {
+
+    static _instance = null;
+
     constructor() {
         this._userId = null;
+    }
+
+    static getInstance() {
+        if (ServiceClient._instance === null)
+        {
+            ServiceClient._instance = new ServiceClient();
+        }
+        return ServiceClient._instance;
     }
 
     get userId() {
@@ -66,14 +77,3 @@ export default class ServiceClient {
         }
     }
 }
-
-
-let __instance = null;
-ServiceClient.getInstance = function()
-{
-    if (__instance === null)
-    {
-        __instance = new ServiceClient();
-    }
-    return __instance;
-};

@@ -2,4 +2,42 @@
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
+
+    tr {
+        line-height: @nm-list-item-height;
+
+        > th, > td {
+            padding-left: 8px;
+            padding-right: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    > thead {
+        border-bottom: 1px solid @nm-separator-color;
+
+        > tr {
+            > th {
+                text-align: left;
+                font-weight: normal;
+            }
+
+            > th:not(:first-child) {
+                border-left: 1px solid @nm-separator-color;
+            }
+
+            > th.album {
+                width: 300px;
+            }
+            > th.artists {
+                width: 300px;
+            }
+        }
+    }
+
+    > tbody {
+
+    }
 }

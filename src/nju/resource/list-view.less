@@ -10,5 +10,16 @@
         padding: 0;
         white-space: nowrap;
         overflow-x: hidden;
+        pointer: default;
+
+        &.selected {
+            color: @nju-selection-color;
+        }
+    }
+}
+
+.nju-list-view.striped {
+    li:nth-child(2n) {
+        background: @nju-striped-color;
     }
 }
