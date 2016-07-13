@@ -12,6 +12,10 @@ export default class ListView extends View {
         return "ul";
     }
 
+    getItemElementTag() {
+        return "li";
+    }
+
     get items() {
         return this._items;
     }
@@ -23,7 +27,7 @@ export default class ListView extends View {
 
     clearItems() {
         if (this.items !== null && this.items.length > 0) {
-            this.$container.children().remove();
+            this.$container.children(this.getItemElementTag()).remove();
         }
 
         this._items = [];
@@ -62,6 +66,6 @@ export default class ListView extends View {
     }
 
     $createNewItem(itemType=0) {
-        return $(`<li/>`);
+        return $(`<${this.getItemElementTag()}/>`);
     }
 }
