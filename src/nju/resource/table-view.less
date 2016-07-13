@@ -1,10 +1,18 @@
 .nju-table-view {
     table-layout: fixed;
     border-collapse: collapse;
+    tr {
+        pointer: default;
+
+        &.selected {
+            color: @nju-selection-color;
+            background: @nju-selection-bg;
+        }
+    }
 }
 
 .nju-table-view.striped {
-    tr:nth-child(2n) {
+    tr:nth-child(2n):not(.selected) {
         background-color: @nju-striped-color;
     }
 }

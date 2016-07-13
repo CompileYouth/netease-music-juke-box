@@ -4,8 +4,17 @@ export default class ListView extends View {
     init() {
         super.init();
         this._items = null;
+        this._selection = null;
         this._$itemTemplates = [];
         this.addStyleClass("nju-list-view");
+
+        this._initLayout();
+
+        this.$container.on("click", this.getItemElementTag(), this._onclick.bind(this));
+    }
+
+    _initLayout() {
+
     }
 
     getElementTag() {
@@ -23,6 +32,20 @@ export default class ListView extends View {
     set items(items) {
         this.clearItems();
         this.addItems(items);
+    }
+
+    get selection() {
+        return this._selection;
+    }
+
+    set selection(selection) {
+        this.selectItem(selection);
+    }
+
+    _onclick(e) {
+        const $item = $(e.currentTarget);
+        const item = $item.data("item");
+        this.selectItem(item);
     }
 
     clearItems() {
@@ -49,8 +72,27 @@ export default class ListView extends View {
         this.$container.append($item);
     }
 
+    selectItem(item=null) {
+        if (this.selection === item) {
+            return;
+        }
+
+        if (this._selection !== null) {
+            this.$getItem(this._selection).removeClass("selected");
+            this._selection = null;
+        }
+
+        this._selection = item;
+        const $item = this.$getItem(item);
+        $item.addClass("selected");
+    }
+
     getTypeOfItem() {
         return 0;
+    }
+
+    getIdOfItem(item) {
+        return item.id;
     }
 
     $createItem(itemType=0) {
@@ -62,10 +104,16 @@ export default class ListView extends View {
     }
 
     renderItem(item, $item) {
-
+        $item.data("item", item);
+        $item.attr("id", "i-" + this.getIdOfItem(item));
     }
 
     $createNewItem(itemType=0) {
         return $(`<${this.getItemElementTag()}/>`);
+    }
+
+    $getItem(item) {
+        const id = this.getIdOfItem(item);
+        return this.$container.children("#i-" + id);
     }
 }
