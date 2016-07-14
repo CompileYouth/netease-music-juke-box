@@ -91,7 +91,7 @@ export default class ListView extends View {
         const $item = this.$getItem(item);
         $item.addClass("selected");
 
-        this.trigger("selectionchanged");
+        this.trigger("selectionchanged", item);
     }
 
     getTypeOfItem() {
@@ -99,7 +99,12 @@ export default class ListView extends View {
     }
 
     getIdOfItem(item) {
-        return item.id;
+        if (item && item.id) {
+            return item.id;
+        }
+        else {
+            return null;
+        }
     }
 
     $createItem(itemType=0) {
