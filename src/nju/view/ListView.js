@@ -42,6 +42,10 @@ export default class ListView extends View {
         this.selectItem(selection);
     }
 
+    get selectedId() {
+        return this.getIdOfItem(this.selection);
+    }
+
     _onclick(e) {
         const $item = $(e.currentTarget);
         const item = $item.data("item");
@@ -49,6 +53,7 @@ export default class ListView extends View {
     }
 
     clearItems() {
+        this.selection = null;
         if (this.items !== null && this.items.length > 0) {
             this.$container.children(this.getItemElementTag()).remove();
         }

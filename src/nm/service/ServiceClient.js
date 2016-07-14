@@ -28,7 +28,7 @@ export default class ServiceClient {
         this._userId = "40652589";
     }
 
-    async getUserPlayLists(uid = this.userId) {
+    async getUserPlayList(uid = this.userId) {
         let res = null;
 
         try {
