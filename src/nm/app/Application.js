@@ -4,8 +4,6 @@ import PlayListView from "../view/PlayListView";
 import TrackTableView from "../view/TrackTableView";
 import TrackPlayerView from "../view/TrackPlayerView";
 
-import ServiceClient from "../service/ServiceClient";
-
 export default class Application extends NJUApplication {
     init() {
         super.init();
@@ -42,21 +40,5 @@ export default class Application extends NJUApplication {
     _initTrackPlayerView() {
         this.trackPlayerView = new TrackPlayerView();
         this.addSubview(this.trackPlayerView, this.$("> footer"));
-    }
-
-    async run() {
-        console.log("Net Music Webapp is now running...");
-
-        try {
-            await ServiceClient.getInstance().login();
-            this.playListView.items = await ServiceClient.getInstance().getUserPlayLists();
-            this.playListView.selection = this.playListView.items[0];
-
-            const playList = await ServiceClient.getInstance().getPlayListDetail(this.playListView.items[0].id);
-            this.trackTableView.items = playList.tracks;
-        }
-        catch (e) {
-            throw new Error("Can't get data.");
-        }
     }
 }
