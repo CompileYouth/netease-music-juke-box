@@ -5,6 +5,7 @@ export default class TrackTableView extends TableView {
     init() {
         super.init();
         this.addStyleClass("nm-track-table-view");
+        this.$container.on("dblclick", this.getItemElementTag(), this._ondblclick.bind(this));
     }
 
     $createHeadItem() {
@@ -45,5 +46,9 @@ export default class TrackTableView extends TableView {
         $item.children(".artists").text(item.artists.map(val => val.name).join(", "));
         $item.children(".album").text(item.album.name);
         $item.children(".time").text(TimeUtil.formatTime(item.lMusic.playTime));
+    }
+
+    _ondblclick() {
+        this.trigger("trackchanged", this.selection);
     }
 }
