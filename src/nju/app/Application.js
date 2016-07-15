@@ -1,29 +1,19 @@
 import View from "../view/View.js";
 
-window.APP = null;
+export default class Application extends View {
+    static _instance = null;
 
-export default class Application extends View
-{
-    constructor(...args)
-    {
-        super(...args);
-        if (window.APP === null)
-        {
-            window.APP = this;
+    static getInstance() {
+        if (Application._instance === null) {
+            Application._instance = new Application();
         }
-        else {
-            throw new Error("Application is a singleton object.");
-        }
+
+        return Application._instance;
     }
 
     init()
     {
         super.init();
         this.addStyleClass("nju-app");
-    }
-
-    run()
-    {
-
     }
 }
