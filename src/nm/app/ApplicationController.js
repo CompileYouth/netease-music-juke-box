@@ -43,7 +43,7 @@ export default class ApplicationController extends NJUApplicationController {
     createApplication(options) {
         const application = new Application();
         application.playListView.on("selectionchanged", this._playListView_selectionchanged.bind(this));
-        application.trackTableView.on("selectionchanged", this._trackTableView_selectionchanged.bind(this));
+        application.trackTableView.on("trackchanged", this._trackTableView_selectionchanged.bind(this));
         return application;
     }
 
