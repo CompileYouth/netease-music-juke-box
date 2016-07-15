@@ -1,7 +1,7 @@
-import Application from "./app/Application";
+import ApplicationController from "./app/ApplicationController";
 
 $(document).ready(() => {
-    const app = new Application("nm-app");
-    app.placeAt(document.body);
-    app.run();
+    const appController = new ApplicationController("nm-app");
+    appController.view.placeAt(document.body);
+    appController.run();
 });
