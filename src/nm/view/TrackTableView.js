@@ -52,7 +52,7 @@ export default class TrackTableView extends TableView {
         else {
             duration = item.duration;
         }
-        $item.children(".time").text(TimeUtil.formatTime());
+        $item.children(".time").text(TimeUtil.formatTime(duration));
     }
 
     _ondblclick() {

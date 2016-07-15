@@ -1,6 +1,7 @@
 import NJUApplication from "../../nju/app/Application.js";
 
 import PlayListView from "../view/PlayListView";
+import SearchView from "../view/SearchView";
 import TrackTableView from "../view/TrackTableView";
 import TrackPlayerView from "../view/TrackPlayerView";
 
@@ -10,14 +11,16 @@ export default class Application extends NJUApplication {
         this.addStyleClass("nm-app");
         this._initLayout();
         this._initPlayListView();
-        this._initTrackTableView();
+        this._initSearchView();
         this._initTrackPlayerView();
+        this._initTrackTableView();
     }
 
     _initLayout() {
         this.$element.append(`
             <header>
                 <h1>网易云音乐</h1>
+
             </header>
             <main>
                 <aside class="sidebar"></aside>
@@ -32,13 +35,18 @@ export default class Application extends NJUApplication {
         this.addSubview(this.playListView, this.$("> main > aside.sidebar"));
     }
 
-    _initTrackTableView() {
-        this.trackTableView = new TrackTableView("nm-track-table");
-        this.addSubview(this.trackTableView, this.$("> main > section.content"));
+    _initSearchView() {
+        this.searchView = new SearchView("nm-search-view");
+        this.addSubview(this.searchView, this.$("> header"));
     }
 
     _initTrackPlayerView() {
         this.trackPlayerView = new TrackPlayerView();
         this.addSubview(this.trackPlayerView, this.$("> footer"));
+    }
+
+    _initTrackTableView() {
+        this.trackTableView = new TrackTableView("nm-track-table");
+        this.addSubview(this.trackTableView, this.$("> main > section.content"));
     }
 }
