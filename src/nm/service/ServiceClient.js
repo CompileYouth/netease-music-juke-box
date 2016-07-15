@@ -97,7 +97,7 @@ export default class ServiceClient {
         }
         if (res) {
             res = JSON.parse(res);
-            return res.result;
+            return res.result.songs;
         }
         else {
             console.log("search err");

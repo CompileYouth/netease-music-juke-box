@@ -22,8 +22,8 @@ export default class TrackTableView extends TableView {
 
     renderHeadItem($headItem) {
         super.renderHeadItem($headItem);
-        $headItem.children(".name").text("歌曲");
-        $headItem.children(".artists").text("歌手");
+        $headItem.children(".name").text("节目名称");
+        $headItem.children(".artists").text("表演者");
         $headItem.children(".album").text("专辑");
         $headItem.children(".time").text("时长");
     }
@@ -46,7 +46,7 @@ export default class TrackTableView extends TableView {
         $item.children(".artists").text(item.artists.map(val => val.name).join(", "));
         $item.children(".album").text(item.album.name);
         let duration = 0;
-        if (item.lMusic.playTime) {
+        if (item.lMusic) {
             duration = item.lMusic.playTime;
         }
         else {

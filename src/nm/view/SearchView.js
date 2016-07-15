@@ -12,8 +12,8 @@ export default class SearchView extends View {
 
     _initLayout() {
         this.$element.append(`
-            <span class="icon"></span>
-            <input type="search">
+            <span class="icon iconfont icon-search"></span>
+            <input type="search" placeholder="搜索音乐">
         `);
     }
 
