@@ -3,7 +3,7 @@ import View from "./View";
 export default class ListView extends View {
     init() {
         super.init();
-        this._items = null;
+        this._items = [];
         this._selection = null;
         this._$itemTemplates = [];
         this.addStyleClass("nju-list-view");

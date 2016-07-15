@@ -45,6 +45,7 @@ export default class ApplicationController extends NJUApplicationController {
         application.playListView.on("selectionchanged", this._playListView_selectionchanged.bind(this));
         application.trackTableView.on("trackchanged", this._trackTableView_selectionchanged.bind(this));
         application.searchView.on("search", this._searchView_search.bind(this));
+        //application.searchView.on("searchchanged", this._searchView_searchchanged.bind(this));
         return application;
     }
 
@@ -95,9 +96,16 @@ export default class ApplicationController extends NJUApplicationController {
     }
 
     async _searchView_search(e) {
-        const songs = await ServiceClient.getInstance().search(e.parameters.text);
-        this.activePlayList = songs;
-
-        this.application.playListView.selection = null;
+        if (e.parameters.final) {
+            const songs = await ServiceClient.getInstance().search(e.parameters.text);
+            this.activePlayList = songs;
+            this.application.playListView.selection = null;
+        }
+        else {
+            // show search-list-view
+            const songs = await ServiceClient.getInstance().search(e.parameters.text, true);
+            this.application.searchListView.deactivate();
+            this.application.searchListView.activate(songs);
+        }
     }
 }
