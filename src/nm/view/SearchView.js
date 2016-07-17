@@ -7,7 +7,8 @@ export default class SearchView extends View {
 
         this._initLayout();
         this.$container.on("keydown", this._onkeydown.bind(this));
-        this.$container.on("click", "span.icon", this._iconclick.bind(this));
+        this.$container.on("click", "span.search-icon", this._searchiconclick.bind(this));
+        this.$container.on("click", "span.delete-icon", this._deleteiconclick.bind(this));
 
         this.inputTimer = null;
         this.$container.find("input").on("input", this._oninput.bind(this));
@@ -15,8 +16,9 @@ export default class SearchView extends View {
 
     _initLayout() {
         this.$element.append(`
-            <span class="icon iconfont icon-search"></span>
+            <span class="icon search-icon iconfont icon-search"></span>
             <input type="search" placeholder="搜索音乐">
+            <span class="icon delete-icon iconfont icon-delete h3"></span>
         `);
     }
 
@@ -42,8 +44,12 @@ export default class SearchView extends View {
         }
     }
 
-    _iconclick(e) {
+    _searchiconclick(e) {
         this.search();
+    }
+
+    _deleteiconclick(e) {
+        this.text = "";
     }
 
     _oninput(e) {
