@@ -36,6 +36,7 @@ export default class Application extends NJUApplication {
 
     _initLoadingView() {
         this.loadingView = new LoadingView("nm-loading-view");
+        this.loadingView.hide();
         this.addSubview(this.loadingView, this.$("> main > section.content"));
     }
 

@@ -88,8 +88,12 @@ export default class ApplicationController extends NJUApplicationController {
     }
 
     async _playListView_selectionchanged(e) {
+        this._showLoading();
+
         const playList = await ServiceClient.getInstance().getPlayListDetail(this.application.playListView.selectedId);
         this.activePlayList = playList.tracks;
+
+        this._hideLoading();
     }
 
     _trackTableView_selectionchanged(e) {
@@ -99,8 +103,13 @@ export default class ApplicationController extends NJUApplicationController {
     }
 
     async _searchView_search(e) {
+        this._showLoading();
+
         const songs = await ServiceClient.getInstance().search(e.parameters.text);
         this.activePlayList = songs;
+
+        this._hideLoading();
+        
         this.application.playListView.selection = null;
 
         this.application.searchListView.hide();
@@ -127,10 +136,24 @@ export default class ApplicationController extends NJUApplicationController {
 
     async _searchListView_itemclick(e) {
         if (e.parameters.itemName) {
+            this._showLoading();
+
             const songs = await ServiceClient.getInstance().search(e.parameters.itemName);
             this.activePlayList = songs;
 
+            this._hideLoading();
+
             this.application.searchView.text = e.parameters.itemName;
         }
+    }
+
+    _showLoading() {
+        this.application.loadingView.show();
+        this.application.trackTableView.hide();
+    }
+
+    _hideLoading() {
+        this.application.loadingView.hide();
+        this.application.trackTableView.show();
     }
 }
