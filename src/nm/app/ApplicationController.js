@@ -102,6 +102,8 @@ export default class ApplicationController extends NJUApplicationController {
         const songs = await ServiceClient.getInstance().search(e.parameters.text);
         this.activePlayList = songs;
         this.application.playListView.selection = null;
+
+        this.application.searchListView.hide();
     }
 
     async _searchView_searchchanged(e) {
