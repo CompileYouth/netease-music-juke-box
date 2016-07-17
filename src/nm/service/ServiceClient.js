@@ -53,8 +53,7 @@ export default class ServiceClient {
         }
     }
 
-    async getPlayListDetail(id)
-    {
+    async getPlayListDetail(id) {
         let res = null;
 
         try {
@@ -74,6 +73,34 @@ export default class ServiceClient {
         }
         else {
             console.log("err");
+        }
+    }
+
+    async search(keyword, suggest=false) {
+        let res = null;
+
+        try {
+            res = await $.ajax({
+                url: suggest ? `${NM_API_URL}/search/suggest/web` : `${NM_API_URL}/search/get/`,
+                method: "post",
+                data: {
+                    s: keyword,
+                    type: 1,
+                    offset: 0,
+                    limit: 100,
+                    sub: false
+                }
+            });
+        }
+        catch (e) {
+            console.log(e);
+        }
+        if (res) {
+            res = JSON.parse(res);
+            return res.result.songs;
+        }
+        else {
+            console.log("search err");
         }
     }
 }

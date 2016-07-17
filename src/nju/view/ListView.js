@@ -3,7 +3,7 @@ import View from "./View";
 export default class ListView extends View {
     init() {
         super.init();
-        this._items = null;
+        this._items = [];
         this._selection = null;
         this._$itemTemplates = [];
         this.addStyleClass("nju-list-view");
@@ -44,6 +44,15 @@ export default class ListView extends View {
 
     get selectedId() {
         return this.getIdOfItem(this.selection);
+    }
+    set selectedId(selectedId=null) {
+        const $item = this.$getItem(selectedId);
+        if ($item.length > 0) {
+            const item = $item.data("item");
+            if (item) {
+                this.selection = item;
+            }
+        }
     }
 
     _onclick(e) {
@@ -88,10 +97,14 @@ export default class ListView extends View {
         }
 
         this._selection = item;
-        const $item = this.$getItem(item);
-        $item.addClass("selected");
 
-        this.trigger("selectionchanged", item);
+        if (this._selection) {
+            const $item = this.$getItem(item);
+            $item.addClass("selected");
+
+            this.trigger("selectionchanged", item);
+        }
+
     }
 
     getTypeOfItem() {

@@ -1,0 +1,23 @@
+.nm-search-list-view {
+    position: absolute;
+    top: 40px;
+    left:310px;
+    background: @body-bg;
+    color: @text-color;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+
+    z-index: 999;
+
+    > li {
+        height: @nm-list-item-height;
+        line-height: @nm-list-item-height;
+        width: 240px;
+        padding-left: 29px;
+        padding-right: 12px;
+        text-overflow: ellipsis;
+
+        &:hover {
+            background: @nm-item-hover-color;
+        }
+    }
+}

@@ -45,6 +45,25 @@ export default class View extends ManagedObject {
         return this._subviews;
     }
 
+
+    show() {
+        this.$element.show();
+    }
+
+    hide() {
+        this.$element.hide();
+    }
+
+    // if shown is true, then show
+    toggle(shown) {
+        if (shown) {
+            this.show();
+        }
+        else {
+            this.hide();
+        }
+    }
+
     addSubview(view, $target = this.$container) {
         if (view instanceof View) {
             if (view.parent) {
