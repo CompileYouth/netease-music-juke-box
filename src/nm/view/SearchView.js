@@ -26,12 +26,11 @@ export default class SearchView extends View {
     }
 
     // if final === true, show final result
-    search(final=true, text=this.text) {
+    search(text=this.text) {
         this.text = text;
         if (text !== "") {
             this.trigger("search", {
-                text: this.text,
-                final
+                text: this.text
             });
         }
     }
@@ -47,7 +46,7 @@ export default class SearchView extends View {
     }
 
     _oninput(e) {
-        this.search(false);
+
     }
 
 }
