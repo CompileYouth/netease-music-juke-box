@@ -8,6 +8,8 @@ export default class SearchView extends View {
         this._initLayout();
         this.$container.on("keydown", this._onkeydown.bind(this));
         this.$container.on("click", "span.icon", this._iconclick.bind(this));
+
+        this.inputTimer = null;
         this.$container.find("input").on("input", this._oninput.bind(this));
     }
 
@@ -25,7 +27,6 @@ export default class SearchView extends View {
         this.$("input[type=search]").val(typeof text === "string" ? text : "");
     }
 
-    // if final === true, show final result
     search(text=this.text) {
         this.text = text;
         if (text !== "") {
@@ -42,11 +43,20 @@ export default class SearchView extends View {
     }
 
     _iconclick(e) {
-        console.log("icon click");
+        this.search();
     }
 
     _oninput(e) {
+        if (this.inputTimer) {
+            window.clearTimeout(this.inputTimer);
+            this.inputTimer = null;
+        }
 
+        this.inputTimer = window.setTimeout(() => {
+            this.trigger("searchchanged", {
+                text: this.text
+            });
+        }, 300);
     }
 
 }
