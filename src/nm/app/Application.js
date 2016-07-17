@@ -1,5 +1,6 @@
 import NJUApplication from "../../nju/app/Application.js";
 
+import LoadingView from "../view/LoadingView";
 import PlayListView from "../view/PlayListView";
 import SearchView from "../view/SearchView";
 import SearchListView from "../view/SearchListView";
@@ -11,6 +12,8 @@ export default class Application extends NJUApplication {
         super.init();
         this.addStyleClass("nm-app");
         this._initLayout();
+
+        this._initLoadingView();
         this._initPlayListView();
         this._initSearchView();
         this._initSearchListView();
@@ -29,6 +32,11 @@ export default class Application extends NJUApplication {
             </main>
             <footer></footer>
         `);
+    }
+
+    _initLoadingView() {
+        this.loadingView = new LoadingView("nm-loading-view");
+        this.addSubview(this.loadingView, this.$("> main > section.content"));
     }
 
     _initPlayListView() {

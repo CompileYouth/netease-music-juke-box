@@ -8,24 +8,6 @@ export default class SearchListView extends ListView {
         this.$container.on("mousedown", this.getItemElementTag(), this._onclick.bind(this));
     }
 
-    show() {
-        this.$element.show();
-    }
-
-    hide() {
-        this.$element.hide();
-    }
-
-    // if shown is true, then show
-    toggle(shown) {
-        if (shown) {
-            this.show();
-        }
-        else {
-            this.hide();
-        }
-    }
-
     renderItem(item, $item) {
         $item.data("item", item);
         $item.attr("id", "i-" + this.getIdOfItem(item));

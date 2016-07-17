@@ -61,6 +61,24 @@ export default class ListView extends View {
         this.selectItem(item);
     }
 
+    show() {
+        this.$element.show();
+    }
+
+    hide() {
+        this.$element.hide();
+    }
+
+    // if shown is true, then show
+    toggle(shown) {
+        if (shown) {
+            this.show();
+        }
+        else {
+            this.hide();
+        }
+    }
+
     clearItems() {
         this.selection = null;
         if (this.items !== null && this.items.length > 0) {
