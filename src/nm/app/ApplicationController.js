@@ -123,7 +123,10 @@ export default class ApplicationController extends NJUApplicationController {
         this.application.searchListView.hide();
     }
 
-    _searchListView_itemclick(e) {
-        console.log(e.parameters.itemName);
+    async _searchListView_itemclick(e) {
+        if (e.parameters.itemName) {
+            const songs = await ServiceClient.getInstance().search(e.parameters.itemName);
+            this.activePlayList = songs;
+        }
     }
 }
