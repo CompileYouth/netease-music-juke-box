@@ -46,6 +46,9 @@ export default class ApplicationController extends NJUApplicationController {
         application.trackTableView.on("trackchanged", this._trackTableView_selectionchanged.bind(this));
         application.searchView.on("search", this._searchView_search.bind(this));
         application.searchView.on("searchchanged", this._searchView_searchchanged.bind(this));
+        application.searchView.$element.find("input").on("focus", this._searchView_focus.bind(this));
+        application.searchView.$element.find("input").on("blur", this._searchView_blur.bind(this));
+        application.searchListView.on("itemclick", this._searchListView_itemclick.bind(this));
         return application;
     }
 
@@ -101,7 +104,26 @@ export default class ApplicationController extends NJUApplicationController {
         this.application.playListView.selection = null;
     }
 
-    _searchView_searchchanged(e) {
-        console.log(e.parameters.text);
+    async _searchView_searchchanged(e) {
+        if (e.parameters.text !== "") {
+            this.application.searchListView.items = await ServiceClient.getInstance().search(e.parameters.text, true);
+            this.application.searchListView.show();
+        }
+        else {
+            // hide search-list-view
+            this.application.searchListView.hide();
+        }
+    }
+
+    _searchView_focus(e) {
+        this.application.searchListView.toggle(this.application.searchView.text && this.application.searchListView.items && this.application.searchListView.items.length > 0);
+    }
+
+    _searchView_blur(e) {
+        this.application.searchListView.hide();
+    }
+
+    _searchListView_itemclick(e) {
+        console.log(e.parameters.itemName);
     }
 }

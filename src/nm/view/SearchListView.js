@@ -4,21 +4,38 @@ export default class SearchListView extends ListView {
     init() {
         super.init();
         this.addStyleClass("nm-search-list-view");
+
+        this.$container.on("mousedown", this.getItemElementTag(), this._onclick.bind(this));
     }
 
-    activate(items) {
+    show() {
         this.$element.show();
-        this.addItems(items);
     }
 
-    deactivate() {
-        this.clearItems();
+    hide() {
         this.$element.hide();
+    }
+
+    // if shown is true, then show
+    toggle(shown) {
+        if (shown) {
+            this.show();
+        }
+        else {
+            this.hide();
+        }
     }
 
     renderItem(item, $item) {
         $item.data("item", item);
         $item.attr("id", "i-" + this.getIdOfItem(item));
         $item.text(item.name);
+    }
+
+    _onclick(e) {
+        const itemName = $(e.currentTarget).text();
+        this.trigger("itemclick", {
+            itemName
+        });
     }
 }
