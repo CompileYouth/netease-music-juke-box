@@ -1,3 +1,100 @@
 .nm-player-view {
-    background: blue;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .buttons {
+        margin-left: 100px;
+
+        div.prevBtn {
+            margin-top: 2px;
+        }
+        div.playBtn {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: -5px;
+            opacity: 0.8;
+            > i {
+                font-size: 38px;
+            }
+
+            > .icon-pause {
+                display: none;
+            }
+
+            &.play {
+                > .icon-pause {
+                    display: block;
+                }
+                > .icon-play {
+                    display: none;
+                }
+            }
+        }
+        div.nextBtn {
+
+        }
+
+        div {
+            display: block;
+            float: left;
+            text-decoration: none;
+            color: @nm-primary-color;
+            opacity: 0.6;
+
+            &:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+
+            > i {
+                font-weight: normal;
+            }
+        }
+    }
+
+    .progress {
+        margin-left: 50px;
+
+        .curTime, .progress-bar, .totalTime {
+            display: block;
+            float: left;
+        }
+
+        .progress-bar {
+            position: relative;
+            width: 500px;
+            height: 10px;
+            margin: 3px 15px 0 15px;
+
+            > .bar-bg, .cur-bg {
+                height: 100%;
+                border-radius: 5px;
+            }
+
+            > .bar-bg {
+                width: 100%;
+                background-color: grey;
+                opacity: 0.5;
+            }
+
+            > .cur-bg {
+                margin-top: -10px;
+                width: 100%;
+                background: @nm-primary-color;
+                opacity: 1;
+
+            }
+
+            > .dot {
+                position: absolute;
+                height: 24px;
+                width: 24px;
+                color: @nm-primary-color;
+                background: url("./images/iconall.png") no-repeat;
+                background-position: 0 -250px;
+                top: -7px;
+                left: 98%;
+            }
+        }
+    }
 }
