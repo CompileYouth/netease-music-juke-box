@@ -4,6 +4,7 @@ export default class PlayListView extends ListView {
     init() {
         super.init();
         this.addStyleClass("nm-play-list-view");
+        this.$container.perfectScrollbar();
     }
 
     $createNewItem() {

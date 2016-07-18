@@ -38,5 +38,8 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "wolfy87-eventemitter": "^5.1.0"
+  },
+  "dependencies": {
+    "perfect-scrollbar": "^0.6.12"
   }
 }
