@@ -55,6 +55,14 @@ export default class ListView extends View {
         }
     }
 
+    showSelection() {
+        this.removeStyleClass("hide-selection");
+    }
+
+    hideSelection() {
+        this.addStyleClass("hide-selection");
+    }
+
     _onclick(e) {
         const $item = $(e.currentTarget);
         const item = $item.data("item");
@@ -101,10 +109,8 @@ export default class ListView extends View {
         if (this._selection) {
             const $item = this.$getItem(item);
             $item.addClass("selected");
-
             this.trigger("selectionchanged", item);
         }
-
     }
 
     getTypeOfItem() {
