@@ -109,7 +109,7 @@ export default class ApplicationController extends NJUApplicationController {
         this.activePlayList = songs;
 
         this._hideLoading();
-        
+
         this.application.playListView.selection = null;
 
         this.application.searchListView.hide();
