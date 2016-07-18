@@ -17,8 +17,9 @@ export default class ViewController extends ManagedObject {
         this.applyViewOptions(options);
     }
 
+    // Must be overide
     createView(options) {
-        return new View(options);
+        throw new Error("createView(options) must br overide in the derived class");
     }
 
     applyViewOptions(options) {
