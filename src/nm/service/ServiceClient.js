@@ -99,7 +99,7 @@ export default class ServiceClient {
             res = JSON.parse(res);
 
             if (res.code === 200) {
-                return res.result.songs;
+                return res.result;
             }
 
         }

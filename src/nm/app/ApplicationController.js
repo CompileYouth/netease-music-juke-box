@@ -71,12 +71,21 @@ export default class ApplicationController extends NJUApplicationController {
     }
 
     _onPlayListsChanged() {
+        //console.log(this.playLists);
         this.application.playListView.items = this.playLists;
     }
 
     _onActivePlayListChanged() {
         if (this.activePlayList) {
-            this.application.trackTableView.items = this.activePlayList;
+            if (this.activePlayList.id) {
+                this.application.playListView.showSelection();
+                this.application.trackTableView.items = this.activePlayList.tracks;
+            }
+            else {
+                this.application.playListView.hideSelection();
+                this.application.trackTableView.items = this.activePlayList;
+            }
+
         }
         else {
             this.trackTableView.items = [];
@@ -91,7 +100,7 @@ export default class ApplicationController extends NJUApplicationController {
         this._showLoading();
 
         const playList = await ServiceClient.getInstance().getPlayListDetail(this.application.playListView.selectedId);
-        this.activePlayList = playList.tracks;
+        this.activePlayList = playList;
 
         this._hideLoading();
     }
@@ -105,8 +114,8 @@ export default class ApplicationController extends NJUApplicationController {
     async _searchView_search(e) {
         this._showLoading();
 
-        const songs = await ServiceClient.getInstance().search(e.parameters.text);
-        this.activePlayList = songs;
+        const searchResult = await ServiceClient.getInstance().search(e.parameters.text);
+        this.activePlayList = searchResult.songs;
 
         this._hideLoading();
 
@@ -117,7 +126,8 @@ export default class ApplicationController extends NJUApplicationController {
 
     async _searchView_searchchanged(e) {
         if (e.parameters.text !== "") {
-            this.application.searchListView.items = await ServiceClient.getInstance().search(e.parameters.text, true);
+            const suggestion = await ServiceClient.getInstance().search(e.parameters.text, true);
+            this.application.searchListView.items = suggestion.songs;
             this.application.searchListView.show();
         }
         else {
@@ -138,8 +148,8 @@ export default class ApplicationController extends NJUApplicationController {
         if (e.parameters.itemName) {
             this._showLoading();
 
-            const songs = await ServiceClient.getInstance().search(e.parameters.itemName);
-            this.activePlayList = songs;
+            const searchResult = await ServiceClient.getInstance().search(e.parameters.itemName);
+            this.activePlayList = searchResult.songs;
 
             this._hideLoading();
 
